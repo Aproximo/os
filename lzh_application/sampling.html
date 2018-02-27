@@ -1,0 +1,345 @@
+
+
+	<body onload="load(CompanyName)">
+		
+		<form class="form" action="main.php" method="POST" onsubmit="return validation()" id="form" enctype="multipart/form-data">
+			<!-- return validation() -->
+
+				<input type="hidden" id="type_of_app" name="type_of_app_name"  value="<?php echo $_GET['name'] == 'survei' ? '2' : '1' ?>">
+
+				<label class="" for="date">
+					<span class="left_part_of_lable">Дата, коли потрібно провести відбір</span>
+					<div class="right_part">
+					<!-- <div class="select_for_day"> -->
+						<select class="select_for_day" id="select_dd" name="dayaSelect" >
+							<option disabled selected value hidden>ДД</option>
+							<option value="01">01</option>
+							<option value="02">02</option>
+							<option value="03">03</option>
+							<option value="04">04</option>
+							<option value="05">05</option>
+							<option value="06">06</option>
+							<option value="07">07</option>
+							<option value="08">08</option>
+							<option value="09">09</option>
+							<option value="10">10</option>	
+							<option value="11">11</option>	
+							<option value="12">12</option>	
+							<option value="13">13</option>	
+							<option value="14">14</option>	
+							<option value="15">15</option>	
+							<option value="16">16</option>	
+							<option value="17">17</option>	
+							<option value="18">18</option>		
+							<option value="19">19</option>
+							<option value="20">20</option>	
+							<option value="21">21</option>	
+							<option value="22">22</option>	
+							<option value="23">23</option>	
+							<option value="24">24</option>	
+							<option value="25">25</option>	
+							<option value="26">26</option>	
+							<option value="27">27</option>	
+							<option value="28">28</option>		
+							<option value="29">29</option>
+							<option value="30">30</option>
+							<option value="31">31</option>	
+						</select>
+						
+					<!-- </div> -->
+					<!-- <div class="select_for_month"> -->
+						<select class="select_for_month" id="select_mm" name="monthSelect">
+							<option disabled selected value hidden>ММ</option>
+							<option value="01">Січень</option>
+							<option value="02">Лютий</option>
+							<option value="03">Березень</option>
+							<option value="04">Квітень</option>
+							<option value="05">Травень</option>
+							<option value="06">Червень</option>
+							<option value="07">Липень</option>
+							<option value="08">Серпень</option>
+							<option value="09">Вересень</option>
+							<option value="10">Жовтень</option>
+							<option value="11">Листопад</option>
+							<option value="12">Грудень</option>	
+						</select>	
+					<!-- </div> -->
+					<!-- <div class="select_for_year"> -->
+						<select class="select_for_year" id="select_yyyy" name="yearSelect">
+							<option disabled selected value hidden>РРРР</option>
+							
+						</select>
+
+					<!-- </div> -->
+					</div>
+					<!-- <input class="right_part input_type_text" type="date" value="" id="date" max="1979-12-31" min="2000-01-02" > -->
+				</label>
+					
+
+				<label class="" for="Mandator_name">
+					<span class="left_part_of_lable">Назва компанії замовника (платника)</span>
+					<div class="group">      
+      				<input class="right_part input_type_text input validation" type="text" id="MandatorName" value="<?php echo isset($_COOKIE['Mandator_Name']) ? $_COOKIE['Mandator_Name'] : '' ?>" placeholder="Виберіть організацію із списку" name="Mandator_Name" AUTOCOMPLETE="off" onblur="checkCompanyID('MandatorName', 'Mandator_id')" onkeydown ="clearValue('Mandator_id')">
+      				<span class="bar"></span>
+      				  <ul class="list" id = "Mandator_Name" name="Mandator_name_id"> 
+  						</ul>
+					</div>
+				</label>
+				<input type="hidden" id="Mandator_id" name="Mandator_name_id" class="div_counter" value="<?php echo isset($_COOKIE['Mandator_id']) ? $_COOKIE['Mandator_id'] : '' ?>">
+					
+				<label class="" for="Operator_name">
+					<span class="left_part_of_lable">Назва компанії, де потрібно здійснити відбір (оператор)</span>
+					<div class="group"> 
+					<input class="right_part input_type_text input validation" type="text" id="OperatorName" value="<?php echo isset($_COOKIE['Operator_Name']) ? $_COOKIE['Operator_Name'] : '' ?>" placeholder="Виберіть організацію із списку" name="Operator_Name" AUTOCOMPLETE="off" onblur="checkCompanyID('OperatorName', 'Operator_id')" onkeydown ="clearValue('Operator_id')">
+					<span class="bar"></span>
+					  <ul class="list" id = "Operator_Name"> 
+  						</ul>
+     				</div>
+				</label>
+				<input type="hidden" id="Operator_id" name="Operator_name_id" class="div_counter" value="<?php echo isset($_COOKIE['Operator_id']) ? $_COOKIE['Operator_id'] : '' ?>">
+
+				<!-- <label  for="region">
+						<span class="left_part_of_lable">Чи є оператор виробником продукції</span>
+						<select class="right_part select" id="region" name="Region" onchange = "createSelectDistrict(this)">
+							
+						</select>
+					</label> -->
+				
+				<!-- <label class="" for="Operator_name">
+					<span class="left_part_of_lable">Назва компанії, виробника</span>
+					<div class="group"> 
+					<input class="right_part input_type_text input" type="text" id="OperatorName" placeholder="Оператор" name="Operator_Name" AUTOCOMPLETE="off">
+					<span class="bar"></span>
+					  <ul class="list" id = "Operator_Name"> 
+  						</ul>
+     				</div>
+				</label>
+				<input type="hidden" id="Operator_id" name="div_counter" class="div_counter" value=""> -->
+			
+			
+
+				<div class="container" id="container">
+				<div class="inputs"  id="repit_div">
+						<!-- <input type="hidden" id="div_counter" name="div_counter" class="div_counter" value=""> -->
+        <!-- <hr> -->
+					<label  for="region">
+						<span class="left_part_of_lable">Область</span>
+						<select class="right_part select" id="region" name="Region" onchange = "createSelectDistrict(this)">
+				
+						</select>
+					</label>
+
+					<label class="" for="district">
+						<span class="left_part_of_lable">Район</span>
+						<div class="group">
+						<select class="right_part select" id="district" name="District" disabled = "true">
+
+						</select>
+     					</div>
+					</label>
+						
+
+					<label class="" for="settlement">
+						<span class="left_part_of_lable">Населений пункт</span>
+						<div class="group">
+							<input class="right_part input_type_text validation" type="text" id="SettlementID" name="Settlement" placeholder = "Населений пункт" >
+							<span class="bar"></span>
+     					</div>
+					</label>
+						
+					<div class="line">
+						<label class="" for="street">
+							<span class="left_part_of_lable">Вулиця</span>
+							<div class="group">
+								<input class="left_input input_type_text validation" type="text" id="street" name="Street" placeholder = "Вул." >
+								<span class="bar left"></span>
+	     					</div>
+	     					<div class="group">
+								<input class="right_input input_type_text" type="text" id="buid_number" name="Build_number" placeholder = "буд. №" > 
+								<span class="bar right"></span>
+	     					</div>
+						</label>						
+					</div>
+
+		
+					<label class="" for="save_product_placeID">
+						<span class="left_part_of_lable">Місце зберігання продукції</span>
+						<select class="right_part select validation" id="save_product_placeID" name="save_product_place">
+							<option disabled selected value = "default" hidden><span class="SelectDefaultText">Виберіть опцію</span></option>
+							<option value="1">Поле</option>
+							<option value="2">Склад</option>
+							<option value="3">Холодильник</option>							
+						</select>
+					</label>
+
+					<label class="" for="Save_product">
+						<span class="left_part_of_lable">Спосіб зберігання продукції</span>
+						<select class="right_part select validation" id="save_product" name="save_product">
+							<option disabled selected value = "default" hidden><span class="SelectDefaultText">Виберіть опцію</span></option>
+							<option value="1">Біг-бег</option>
+							<option value="2">Насипом</option>
+							<option value="3">Упаковки</option>
+							<option value="4">Зерновий рукав</option>
+							<option value="9">інше</option>
+						</select>
+					</label>
+
+					<label class="" for="settlement">
+						<span class="left_part_of_lable">Номер\назва місця зберігання</span>
+						<div class="group">
+							<input class="right_part input_type_text validation" type="text" id="storeg_n" name="Name_number" placeholder = "Номер або назва місця зберігання" >
+							<span class="bar"></span>
+     					</div>
+					</label>
+
+					
+
+
+
+					<label class="" for="product_name">
+						<span class="left_part_of_lable">Назва продукції</span>
+						<div class="group">
+							<input class="right_part input_type_text validation" type="text" id="product_name_id" name="Product_name"  placeholder = "Продукція" >
+							<span class="bar"></span>
+     					</div>
+					</label>
+						
+<div class="line">
+					<label class="" for="lot_amount">
+						<span class="left_part_of_lable">Обсяг партії</span>
+						<div class="group">
+							<input class="left_input input_type_text validation hide507" type="number" id="hide500" name="lot_amount" step="0.01"  onchange="check_uncheck_modify('lot_amount')"  placeholder = "Обсяг партії" >
+							<span class="bar left"></span>
+     					</div>
+							<div class="group">
+								
+								<select class="right_input input_type_text units validation" id="units" name="units_name" onchange="check_uncheck_modify('lot_amount')">
+									<option disabled selected value = "default" hidden><span class="SelectDefaultText">од. виміру</span></option>
+									<option value="1">Кг</option>
+									<option value="2">Т</option>
+									<option value="3">Л</option>
+								</select>
+								<span class="bar right"></span>
+	     					</div>
+					</label>
+
+</div>
+	
+
+						
+						
+
+					<label class="" for="lot_name">
+						<span class="left_part_of_lable">Номер партії</span>
+						<div class="group">
+							<input class="right_part input_type_text validation" type="text" id="lot_id" name="lot_name"  placeholder = "№ партії" >
+							<span class="bar"></span>
+     					</div>
+					</label>
+						
+
+					<label class="" for="harvest_year">
+						<span class="left_part_of_lable">Рік урожаю продукції</span>
+						<div class="group">
+							<select class="right_part input_type_text validation" id="harvest_year" name="Year_of_harvest">
+							</select>							
+     					</div>
+
+
+					</label>	
+					</div>
+			</div>			
+
+					
+
+				<div class="hide500" id="lot_amount">
+					<p>Будь ласка, замовте для відбору зовнішню сюрвеєрську компанію:</p>
+					<p class="coment">Зверніть, увагу, що сюрвеєрська компанія повинна мати атестат акредитації: ISO 17020, бути членом GAFTA та посилатися НА постанову ЄС №691/2013 в звітах з відбору</p>
+					<label class="" for="sur_company">
+						<span class="left_part_of_lable">Назва сюрвеєрської компанії</span>
+						<select class="right_part" id="sur_company" name="Survei_company" value="missing" onchange="check_uncheck('sur_company')">
+							<option disabled selected value = "default" hidden><span class="SelectDefaultText">Виберіть опцію</span></option>
+							<option value="1">Agro-Maas</option>
+							<option value="2">Amiranda</option>
+							<option value="3">SGS</option>
+							<option value="4">Commodity Control Services</option>
+							<option value="5">Inspectorate</option>
+							<option value="6">Baltic Control</option>
+							<option value="7">Ecotec Black Sea</option>
+							<option value="9" >інша...</option>
+						</select>
+					</label>
+					<div class="hide500" id="Survei_company">
+						<label class="coment coment_l" for="file_survei_company" >
+							<span class="left_part_of_lable">Додайте, будь ласка, файл атестата акредитації компанії згідно ISO 17020</span>
+							<div class="group">
+								<input class="right_part input_type_text" type="file" id="file_survei_company" name="file_survei_company">
+							<span class="bar"></span>
+							</div>
+						</label>
+     				</div>
+				</div>
+			
+				<label class="" for="type_of_analise">
+					<span class="left_part_of_lable">Якщо треба проаналізувати зразок на додаткові показники то вкажіть які:</span>
+					<div class="group">
+						<input class="right_part input_type_text" type="text" id="type_of_analise" name="additional_parameters"  placeholder = "Показники">
+						<span class="bar"></span>
+     				</div>
+				</label>
+
+				<label class="long_lable" for="confirm_car">
+					<span class="left_part_of_lable">Чи згодні Ви понести витрати, пов’язані з використанням власного транспортного засобу інспектором для оперативнішого надання послуги?</span>
+					<select class="right_part select long_lable validation" id="confirm_car" name="confirm_car">
+						<option disabled selected value = "default" hidden><span class="SelectDefaultText">Виберіть опцію</span></option>
+						<option value="1">Так</option>
+						<option value="0">ні</option>						
+					</select>
+				</label>
+			
+				<label class="" for="importer">
+					<span class="left_part_of_lable">Вкажіть, будь ласка, орієнтованого імпортера, якому Ви плануєте реалізувати продукцію?</span>
+					<div class="group">
+					<input type="text" class="right_part input_type_text validation" id="importer" name="importer" placeholder = "Імпортер">	
+					<span class="bar"></span>
+ 				</div>					
+				</label>
+
+		
+				</div>
+				<label class="" for="contact_FIO">
+					<span class="left_part_of_lable">Контактна особа, відповідальна за подання заявки</span>
+					<div class="group">
+						<input class="right_part input_type_text validation" type="text" id="contact_FIO" placeholder="ПІБ" name="Contact_person" value="<?php echo isset($_COOKIE['Contact_person']) ? $_COOKIE['Contact_person'] : '' ?>">
+						<span class="bar"></span>
+     				</div>	
+				</label>
+				
+					
+				<label class="" for="contact_phone">
+					<span class="left_part_of_lable">Телефон</span>
+					<div class="group">
+						<input class="right_part input_type_text validation" type="phone" id="contact_phone" placeholder="06хххххххх" name="Phone" title="06хххххххх" value="<?php echo isset($_COOKIE['Phone']) ? $_COOKIE['Phone'] : '' ?>">
+						<span class="bar"></span>
+     				</div>	
+				</label>
+					
+				<label class="" for="contact_email">
+				<span class="left_part_of_lable">e-mail адреса, на яку необхідно надіслати протокол лабораторних випробувань</span>
+					<div class="group">
+						<input class="right_part input_type_text validation" type="email" id="contact_email" placeholder="email" name="Email" value="<?php echo isset($_COOKIE['Email']) ? $_COOKIE['Email'] : '' ?>">
+						<span class="bar"></span>
+     				</div>	
+				</label>
+
+				<textarea name="coments" id="coment" class="coments" placeholder="Поле для коментарів"></textarea>
+				
+			  	<div class="agree">
+					<label class="" for="agree_pay"><input  type="checkbox" name="agreePay" class="checkbox validation" id="agree_pay" required="" ></label>
+					<p onclick="comfirm()" id="p_for_agree_pay">Заповненням заявки, <strong>зобов'язуюсь</strong> оплатити послуги інспекції з відбору зразків та/або відвантаження. Підтверджую, що маю дозвіл на здійснення зазначених послуг від компанії-оператора.</p>
+				</div>
+				<div class="div_for_submit_button">
+					<input class="submit_button" type="submit" id="" value="Подати заявку">
+				</div>
+		</form>	
+	</body>
